@@ -1,0 +1,39 @@
+
+<div class="container mt-5">
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search..."
+      [(ngModel)]="filterTerm"
+    />
+  </div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="apiData">
+      <tr *ngFor="let user of apiData | filter: filterTerm">
+
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <div *ngIf="user.languages.length" class="d-flex flex-row flex-wrap">
+            
+            <span *ngFor="let lang of user.languages" class="badge bg-primary rounded-pill m-1">
+              {{lang}}
+            </span>
+
+        </div>  
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
